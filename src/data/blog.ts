@@ -101,6 +101,23 @@ export const isListed = (p: BlogPost) => !p.unlisted;
    Sorted newest-first by `date` wherever this array is consumed. */
 export const BLOG_POSTS: BlogPost[] = [
   {
+    /* Added 2026-11-14 at Narine's request: a public test post with her
+       placeholder text. Header: her group class photo (narine-contact-9).
+       No topics or takeaways yet because the text has no real subject. */
+    slug: "test-post",
+    title: "Test post",
+    date: "2026-11-14",
+    excerpt: "Test paragraph 1",
+    image: "/blog-test-post.jpg",
+    body: `Test paragraph 1
+
+Test paragraph 2
+
+Test paragraph 3
+
+Test paragraph 4`,
+  },
+  {
     /* Built 2026-10-21 from Narine's voice note to Joshua (20 Oct), in her
        words. She reviewed it in Google Docs, made small edits and added the
        hip and groin FAQ; repetition trimmed after her review. No exercises,
