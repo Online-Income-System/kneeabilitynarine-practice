@@ -23,14 +23,13 @@ Speed matters: she is waiting. Keep it quick.
 0. **Tell her right away:** "On it. I'll send you a preview link in a few minutes." Then work.
 1. **Make the change** on your working branch. **Never push to `main` directly.**
 2. **Only for bigger changes** (new page, new section, new blog post, moving things around, anything in code beyond words, links or images), run `npm install` (if needed) and `npm run build` and fix any errors first. For small text, link, price or photo swaps, **skip this step**: Netlify's preview build checks it.
-3. **Push the branch.** Netlify builds the preview in about 1 minute. Check the Netlify commit status every 20 to 30 seconds. If the preview build fails, read why, fix it and push again before you tell her anything.
-4. **Send her the preview link.** Find it like this:
-   - First try the commit status: `gh api repos/{owner}/{repo}/commits/{sha}/status` and use the `target_url` from Netlify.
-   - If that has nothing, build it from the branch name: replace every `/` and `.` in the branch name with `-`, then use `https://<that>--<Netlify site name>.netlify.app`.
-   - Only send the link once the Netlify status says the preview is ready (success).
+3. **Push the branch and open a draft pull request straight away** into `main` (`gh pr create --draft`, short plain title like "Update course price"). Don't wait for a branch preview first: the pull request is what makes Netlify build the preview.
+4. **Send her the preview link.** It is always `https://deploy-preview-<PR number>--<Netlify site name>.netlify.app`, plus the page path (for example `/about`).
+   - Wait for Netlify to finish: `gh pr checks <PR number> --watch --interval 15`. Only send the link once the Netlify deploy check has passed. If it failed, read why, fix it, push again and wait again before you tell her anything.
+   - Don't try to open the link yourself or use other tools to find it. The address above is enough.
    Tell her which page to look at and what changed, in one or two short sentences. Then ask: **"Does it look right? Say 'put it live' when you're happy."**
 5. **Wait for her yes.** Only go on when she clearly says yes ("put it live", "yes", "looks good, publish it"). If she wants changes, make them and send a new preview link.
-6. **Put it live:** open a pull request into `main` and merge it yourself (`gh pr create` then `gh pr merge --squash`). Use a short plain title like "Update course price".
+6. **Put it live:** mark the pull request ready and merge it yourself (`gh pr ready <PR number>` then `gh pr merge <PR number> --squash`).
 7. **Tell her it's done:** "It's live. Your website will show the change in about a minute: <link to the page on the live website address>."
 
 If you can't merge it yourself (for example a permission error), don't ask her to fix it in GitHub. Tell her: "The change is ready but I couldn't put it live. Please send Josh this link:" and give her the pull request link.
@@ -38,8 +37,8 @@ If you can't merge it yourself (for example a permission error), don't ask her t
 Never put anything live without her yes.
 
 **Several changes in one chat.** Narine often asks for a few changes one after another in the same chat. So:
-- **Before you start each new change**, bring your branch up to date with the live site: `git fetch origin main` then `git reset --hard origin/main` (only after the last change is live or she has dropped it). This stops an old change being sent twice and stops you undoing anything already live.
-- If she asks for more changes **before** saying "put it live", add them to the same preview and send the new preview link. One "put it live" then publishes them all together.
+- **Before you start each new change**, bring your branch up to date with the live site: `git fetch origin main` then `git reset --hard origin/main` (only after the last change is live or she has dropped it; if she dropped it, close that pull request). After the reset, push with `--force` (your branch history changed). Each new change gets its own new pull request and preview number. This stops an old change being sent twice and stops you undoing anything already live.
+- If she asks for more changes **before** saying "put it live", push them to the same branch (same pull request, same preview address), wait for the Netlify check again, then send the link again. One "put it live" then publishes them all together.
 - If something already live looks different from what you expect (for example someone else changed the site), go with what's live, tell her in one plain sentence, and don't put back anything you weren't asked to.
 - You don't need to explain git, branches or workspaces to her. Just tell her what changed on her website.
 
