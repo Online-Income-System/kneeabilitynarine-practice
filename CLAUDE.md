@@ -18,13 +18,16 @@ Narine never needs to open GitHub. You do every GitHub step for her.
 **Netlify site name:** `kneeabilitynarine-practice` (update this line if the site moves to a different Netlify project).
 **Live website address:** `https://kneeabilitynarine-practice.netlify.app` (change to `https://kneeabilitynarine.com` on the real site).
 
+Speed matters: she is waiting. Keep it quick.
+
+0. **Tell her right away:** "On it. I'll send you a preview link in a few minutes." Then work.
 1. **Make the change** on your working branch. **Never push to `main` directly.**
-2. **Check it builds:** run `npm run build`. It must finish with no errors. If it fails, fix it before you go on.
-3. **Push the branch** and wait for Netlify to build a preview (usually 1 to 3 minutes).
+2. **Only for bigger changes** (new page, new section, new blog post, moving things around, anything in code beyond words, links or images), run `npm install` (if needed) and `npm run build` and fix any errors first. For small text, link, price or photo swaps, **skip this step**: Netlify's preview build checks it.
+3. **Push the branch.** Netlify builds the preview in about 1 minute. Check the Netlify commit status every 20 to 30 seconds. If the preview build fails, read why, fix it and push again before you tell her anything.
 4. **Send her the preview link.** Find it like this:
    - First try the commit status: `gh api repos/{owner}/{repo}/commits/{sha}/status` and use the `target_url` from Netlify.
    - If that has nothing, build it from the branch name: replace every `/` and `.` in the branch name with `-`, then use `https://<that>--<Netlify site name>.netlify.app`.
-   - Open the link yourself first and check it loads before you send it.
+   - Only send the link once the Netlify status says the preview is ready (success).
    Tell her which page to look at and what changed, in one or two short sentences. Then ask: **"Does it look right? Say 'put it live' when you're happy."**
 5. **Wait for her yes.** Only go on when she clearly says yes ("put it live", "yes", "looks good, publish it"). If she wants changes, make them and send a new preview link.
 6. **Put it live:** open a pull request into `main` and merge it yourself (`gh pr create` then `gh pr merge --squash`). Use a short plain title like "Update course price".
