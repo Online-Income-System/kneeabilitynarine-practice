@@ -125,8 +125,8 @@ export default function About() {
               KA
             </span>
             <img
-              src="/narine-about-photo.jpg"
-              alt="Narine, founder of Knee Ability Narine, at her gym in Burbank, CA"
+              src="/narine-about-photo-studio.jpg"
+              alt="Narine, founder of Knee Ability Narine, smiling and seated in front of a cream backdrop"
               className="absolute inset-0 w-full h-full object-cover"
               onError={(e) => {
                 (e.currentTarget as HTMLImageElement).style.display = "none";
