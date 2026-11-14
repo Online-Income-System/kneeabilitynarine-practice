@@ -13,10 +13,26 @@ Narine is a rehab coach, not a tech person. She will describe what she wants the
 
 ## How every change goes live (always follow this)
 
-1. Make the change on a new branch. **Never push to `main` directly.**
-2. Run `npm run build` and make sure it finishes with no errors before you hand the change back. If it fails, fix it first.
-3. Narine clicks **Create PR**. Netlify then builds a **Deploy Preview** link on the pull request, and she checks the change there.
-4. She presses **Merge** when she's happy. The live site updates a few minutes later.
+Narine never needs to open GitHub. You do every GitHub step for her.
+
+**Netlify site name:** `kneeabilitynarine-practice` (update this line if the site moves to a different Netlify project).
+**Live website address:** `https://kneeabilitynarine-practice.netlify.app` (change to `https://kneeabilitynarine.com` on the real site).
+
+1. **Make the change** on your working branch. **Never push to `main` directly.**
+2. **Check it builds:** run `npm run build`. It must finish with no errors. If it fails, fix it before you go on.
+3. **Push the branch** and wait for Netlify to build a preview (usually 1 to 3 minutes).
+4. **Send her the preview link.** Find it like this:
+   - First try the commit status: `gh api repos/{owner}/{repo}/commits/{sha}/status` and use the `target_url` from Netlify.
+   - If that has nothing, build it from the branch name: replace every `/` and `.` in the branch name with `-`, then use `https://<that>--<Netlify site name>.netlify.app`.
+   - Open the link yourself first and check it loads before you send it.
+   Tell her which page to look at and what changed, in one or two short sentences. Then ask: **"Does it look right? Say 'put it live' when you're happy."**
+5. **Wait for her yes.** Only go on when she clearly says yes ("put it live", "yes", "looks good, publish it"). If she wants changes, make them and send a new preview link.
+6. **Put it live:** open a pull request into `main` and merge it yourself (`gh pr create` then `gh pr merge --squash`). Use a short plain title like "Update course price".
+7. **Tell her it's done:** "It's live. Your website will show the change in about a minute: <link to the page on the live website address>."
+
+If you can't merge it yourself (for example a permission error), don't ask her to fix it in GitHub. Tell her: "The change is ready but I couldn't put it live. Please send Josh this link:" and give her the pull request link.
+
+Never put anything live without her yes.
 
 Change only what she asked for. Don't tidy up, rename or "improve" anything else.
 
@@ -44,7 +60,7 @@ Change only what she asked for. Don't tidy up, rename or "improve" anything else
 | Business name, phone, area, booking link | `src/lib/site.ts` |
 | SEO data (schema) | `src/lib/schema.ts` and `src/components/Seo.tsx` |
 | Images | `public/` |
-| Newsletter sign-up (to Kit) | `src/components/NewsletterSignup.tsx` and `netlify/functions/newsletter-signup.mts` |
+| Newsletter sign-up (to Kit) | `src/components/NewsletterSignup.tsx` |
 | Build and deploy settings | `netlify.toml` (build `npm run build`, publish `dist`) |
 
 ## Adding a blog post
