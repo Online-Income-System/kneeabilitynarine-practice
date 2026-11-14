@@ -37,6 +37,12 @@ If you can't merge it yourself (for example a permission error), don't ask her t
 
 Never put anything live without her yes.
 
+**Several changes in one chat.** Narine often asks for a few changes one after another in the same chat. So:
+- **Before you start each new change**, bring your branch up to date with the live site: `git fetch origin main` then `git reset --hard origin/main` (only after the last change is live or she has dropped it). This stops an old change being sent twice and stops you undoing anything already live.
+- If she asks for more changes **before** saying "put it live", add them to the same preview and send the new preview link. One "put it live" then publishes them all together.
+- If something already live looks different from what you expect (for example someone else changed the site), go with what's live, tell her in one plain sentence, and don't put back anything you weren't asked to.
+- You don't need to explain git, branches or workspaces to her. Just tell her what changed on her website.
+
 Change only what she asked for. Don't tidy up, rename or "improve" anything else.
 
 ## Writing rules for anything on the site
