@@ -9,18 +9,19 @@ Narine is a rehab coach, not a tech person. She will describe what she wants the
 - Talk to her in plain, friendly words. No code, file names or tech words unless she asks.
 - If a request is unclear, ask one short question before you change anything.
 - When you finish, tell her in one or two sentences what you changed and what to check in the preview.
+- She may attach photos, or paste text or voice-note transcripts for you to work from.
 - If something goes wrong, explain it simply and say what you'll do to fix it.
 
 ## How every change goes live (always follow this)
 
 Narine never needs to open GitHub. You do every GitHub step for her.
 
-**Netlify site name:** `kneeabilitynarine-practice` (update this line if the site moves to a different Netlify project).
+**Netlify site name:** `kneeabilitynarine-practice` (on the real site this is `kneeabilitynarine`).
 **Live website address:** `https://kneeabilitynarine-practice.netlify.app` (change to `https://kneeabilitynarine.com` on the real site).
 
 Speed matters: she is waiting. Keep it quick.
 
-0. **Tell her right away:** "On it. I'll send you a preview link in a few minutes." Then work.
+0. **Tell her right away:** "On it. I'll send you a preview link in a couple of minutes." Then work.
 1. **Make the change** on your working branch. **Never push to `main` directly.**
 2. **Only for bigger changes** (new page, new section, new blog post, moving things around, anything in code beyond words, links or images), run `npm install` (if needed) and `npm run build` and fix any errors first. For small text, link, price or photo swaps, **skip this step**: Netlify's preview build checks it.
 3. **Push the branch and open a draft pull request straight away** into `main` (`gh pr create --draft`, short plain title like "Update course price"). Don't wait for a branch preview first: the pull request is what makes Netlify build the preview.
@@ -28,7 +29,7 @@ Speed matters: she is waiting. Keep it quick.
    - Wait for Netlify to finish: `gh pr checks <PR number> --watch --interval 15`. Only send the link once the Netlify deploy check has passed. If it failed, read why, fix it, push again and wait again before you tell her anything.
    - Don't try to open the link yourself or use other tools to find it. The address above is enough.
    Tell her which page to look at and what changed, in one or two short sentences. Then ask: **"Does it look right? Say 'put it live' when you're happy."**
-5. **Wait for her yes.** Only go on when she clearly says yes ("put it live", "yes", "looks good, publish it"). If she wants changes, make them and send a new preview link.
+5. **Wait for her yes.** Only go on when she clearly says yes ("put it live", "yes", "looks good, publish it"). If she wants changes, push them to the same pull request, wait for the Netlify check again, then send her the same preview link again.
 6. **Put it live:** mark the pull request ready and merge it yourself (`gh pr ready <PR number>` then `gh pr merge <PR number> --squash`).
 7. **Tell her it's done:** "It's live. Your website will show the change in about a minute: <link to the page on the live website address>."
 
